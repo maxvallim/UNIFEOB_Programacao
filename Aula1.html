@@ -1,167 +1,179 @@
-Sure! Here is the HTML content for the activities:
 
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atividades Práticas de Autenticação e Autorização no SQL Server</title>
+    <title>Introdução aos Algoritmos</title>
     <style>
+        :root {
+            --primary-color: #00796b;
+            --secondary-color: #e0f7fa;
+            --background-color: #f4f4f4;
+            --text-color: #555;
+            --font-family: Arial, sans-serif;
+        }
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: var(--font-family);
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: var(--background-color);
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
+        .slide {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
         }
-        header {
-            background: #333;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #0779e4 3px solid;
+        .slide:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.02);
         }
-        header h1 {
-            text-align: center;
-            text-transform: uppercase;
-            margin: 0;
-            font-size: 24px;
+        .slide.active {
+            border: 2px solid var(--primary-color);
         }
-        .content {
-           20px;
-            margin-top: 20px;
+        h1, h2 {
+            color: var(--primary-color);
         }
-        h2, h3 {
-            color: #333;
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        ul li {
+            margin: 10px 0;
         }
         pre {
-            background: #333;
-            color: #fff;
+            background-color: #eceff1;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .subtitle {
+            font-size: 0.8em;
+            color: var(--text-color);
+        }
+        .diagram {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .diagram img {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Atividades Práticas de Autenticação e Autorização no SQL Server</h1>
-    </header>
-    <div class="container">
-        <div class="content">
-            <h2>Atividade 1: Verificar o Modo de Autenticação Atual</h2>
-            <h3>Tipos de Autenticação no SQL Server</h3>
-            <ul>
-                <li><strong>Autenticação do Windows</strong>: Utiliza as credenciais do Windows para autenticar usuários. É considerada mais segura porque aproveita os mecanismos de segurança do Windows, como políticas de senha e autenticação Kerberos.</li>
-                <li><strong>Autenticação do SQL Server (Mista)</strong>: Permite que o SQL Server gerencie as credenciais de login. Isso é útil em ambientes onde usuários não têm contas do Windows ou quando é necessário acesso a partir de sistemas não-Windows.</li>
-            </ul>
 
-            <h3>Importância de Utilizar Cada Tipo de Autenticação</h3>
-            <ul>
-                <li><strong>Autenticação do Windows</strong>:
-                    <ul>
-                        <li><strong>Segurança</strong>: Aproveita as políticas de segurança do Windows, como complexidade de senha e bloqueio de conta.</li>
-                        <li><strong>Gerenciamento Centralizado</strong>: Facilita o gerenciamento de usuários e permissões através do Active Directory.</li>
-                        <li><strong>Autenticação Integrada</strong>: Usuários não precisam fornecer credenciais adicionais ao acessar o SQL Server, pois a autenticação é feita automaticamente.</li>
-                    </ul>
-                </li>
-                <li><strong>Autenticação do SQL Server (Mista)</strong>:
-                    <ul>
-                        <li><strong>Flexibilidade</strong>: Permite que usuários sem contas do Windows acessem o SQL Server.</li>
-                        <li><strong>Compatibilidade</strong>: Necessária para aplicativos que não suportam autenticação do Windows.</li>
-                        <li><strong>Isolamento</strong>: Útil em ambientes onde o SQL Server precisa ser isolado do domínio do Windows por razões de segurança ou arquitetura.</li>
-                    </ul>
-                </li>
-            </ul>
+    <div class="slide" id="slide1">
+        <h1>Introdução aos Algoritmos</h1>
+        <h2 class="subtitle">Max Streicher Vallim</h2>
+    </div>
 
-            <h3>Verificar o Modo de Autenticação Atual</h3>
-            <pre><code>SELECT SERVERPROPERTY('IsIntegratedSecurityOnly') AS [AuthMode];</code></pre>
-            <p><strong>Resultado:</strong></p>
-            <ul>
-                <li><strong>1</strong>: O SQL Server está configurado para usar apenas autenticação do Windows.</li>
-                <li><strong>0</strong>: O SQL Server está configurado para usar autenticação mista (Windows e SQL Server).</li>
-            </ul>
+    <div class="slide" id="slide2">
+        <h2>O que é um Algoritmo?</h2>
+        <ul>
+            <li>Um algoritmo é uma sequência finita de instruções bem definidas e não ambíguas.</li>
+            <li>É usado para resolver um problema ou realizar uma tarefa específica.</li>
+        </ul>
+    </div>
 
-            <h2>Atividade 2: Criar um Login e Usuário</h2>
+    <div class="slide" id="slide3">
+        <h2>Características dos Algoritmos</h2>
+        <ul>
+            <li><strong>Finitude:</strong> Deve ter um número finito de passos.</li>
+            <li><strong>Definição:</strong> Cada passo deve ser claramente definido.</li>
+            <li><strong>Entrada:</strong> Deve ter zero ou mais entradas.</li>
+            <li><strong>Saída:</strong> Deve ter uma ou mais saídas.</li>
+            <li><strong>Efetividade:</strong> As operações devem ser básicas e realizáveis.</li>
+        </ul>
+    </div>
 
-            <h3>Passo 1: Criar um Login de SQL Server</h3>
-            <pre><code>CREATE LOGIN MeuLoginComSenha 
-WITH PASSWORD = 'SenhaForte123!';</code></pre>
+    <div class="slide" id="slide4">
+        <h2>Exemplo de Algoritmo: Soma de Dois Números</h2>
+        <ul>
+            <li>Passo 1: Leia o primeiro número, `a`.</li>
+            <li>Passo 2: Leia o segundo número, `b`.</li>
+            <li>Passo 3: Calcule a soma de `a` e `b` e armazene em `soma`.</li>
+            <li>Passo 4: Exiba o valor de `soma`.</li>
+        </ul>
+        <pre>
+a = int(input("Digite o primeiro número: "))
+b = int(input("Digite o segundo número: "))
+soma = a + b
+print("A soma é:", soma)
+        </pre>
+    </div>
 
-            <h4>Explicação:</h4>
-            <ul>
-                <li><strong>CREATE LOGIN</strong>: Este comando cria um novo login no SQL Server.</li>
-                <li><strong>MeuLoginComSenha</strong>: Nome do login que estamos criando.</li>
-                <li><strong>WITH PASSWORD</strong>: Define a senha para o login. No exemplo, a senha é 'SenhaForte123!'.</li>
-                <li><strong>Importância:</strong> Criar logins permite que usuários acessem o SQL Server com credenciais específicas. É uma prática comum em ambientes onde diferentes usuários precisam acessar o banco de dados com diferentes níveis de permissão.</li>
-            </ul>
+    <div class="slide" id="slide5">
+        <h2>Fluxogramas</h2>
+        <ul>
+            <li>Um fluxograma é uma representação gráfica de um algoritmo ou processo.</li>
+            <li>Usa símbolos padronizados para representar diferentes tipos de ações ou etapas.</li>
+            <li>Facilita a visualização e compreensão do fluxo de um algoritmo.</li>
+        </ul>
+        <pre>
+Início
+  |
+  v
+Leia a, b
+  |
+  v
+soma = a + b
+  |
+  v
+Exiba soma
+  |
+  v
+Fim
+        </pre>
+    </div>
 
-            <h3>Passo 2: Criar um Usuário de Banco de Dados</h3>
-            <pre><code>USE MeuBancoDeDados;
-CREATE USER MeuUsuario 
-FOR LOGIN MeuLoginComSenha;</code></pre>
+    <div class="slide" id="slide6">
+        <h2>Diagramas Básicos de um Fluxograma</h2>
+        <div class="diagram">
+            <img src="imagens/inicio_fim.png" alt="Início/Fim">
+            <span><strong>Início/Fim:</strong> Representa o início ou o fim do processo.</span>
+        </div>
+        <div class="diagram">
+            <img src="imagens/processo.png" alt="Processo">
+            <span><strong>Processo:</strong> Representa uma etapa ou ação no processo.</span>
+        </div>
+        <div class="diagram">
+            <img src="imagens/decisao.png" alt="Decisão">
+            <span><strong>Decisão:</strong> Representa um ponto de decisão que altera o fluxo com base em uma condição.</span>
+        </div>
+        <div class="diagram">
+            <img src="imagens/conector.png" alt="Conector">
+            <span><strong>Conector:</strong> Representa a conexão entre diferentes partes do fluxograma.</span>
+        </div>
+    </div>
 
-            <h4>Explicação:</h4>
-            <ul>
-                <li><strong>USE MeuBancoDeDados</strong>: Este comando seleciona o banco de dados `MeuBancoDeDados` para que os comandos subsequentes sejam executados nele.</li>
-                <li><strong>CREATE USER</strong>: Este comando cria um novo usuário no banco de dados selecionado.</li>
-                <li><strong>MeuUsuario</strong>: Nome do usuário que estamos criando.</li>
-                <li><strong>FOR LOGIN MeuLoginComSenha</strong>: Associa o usuário `MeuUsuario` ao login `MeuLoginComSenha` criado anteriormente.</li>
-                <li><strong>Importância:</strong> Criar usuários no banco de dados permite que logins tenham acesso a recursos específicos dentro de um banco de dados. Isso é crucial para gerenciar permissões e garantir que os usuários só possam acessar os dados e executar as operações que lhes foram explicitamente concedidas.</li>
-            </ul>
+    <div class="slide" id="slide7">
+        <h2>Exercícios Práticos</h2>
+        <ol>
+            <li>Escreva um algoritmo que leia dois números e exiba o maior deles.</li>
+            <li>Crie um algoritmo que leia um número e determine se ele é par ou ímpar.</li>
+            <li>Desenvolva um algoritmo que calcule a média de três números.</li>
+            <li>Escreva um algoritmo que leia um número e exiba a tabuada desse número de 1 a 10.</li>
+            <li>Crie um algoritmo que leia um número e determine se ele é primo.</li>
+            <li>Desenvolva um algoritmo que leia uma lista de números e exiba a soma dos números.</li>
+            <li>Escreva um algoritmo que leia uma lista de números e exiba o maior e o menor número da lista.</li>
+            <li>Crie um algoritmo que leia uma string e conte o número de vogais na string.</li>
+            <li>Escreva um algoritmo que leia a idade de uma pessoa e determine se ela é maior de idade (18 anos ou mais).</li>
+            <li>Crie um algoritmo que leia a temperatura em graus Celsius e converta para Fahrenheit.</li>
+        </ol>
+    </div>
 
-            <h2>Atividade 3: Conceder Permissões</h2>
+    <script>
+        document.querySelectorAll('.slide').forEach(slide => {
+            slide.addEventListener('click', () => {
+                document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+                slide.classList.add('active');
+            });
+        });
+    </script>
 
-            <h3>Conceder Permissões de Leitura</h3>
-            <pre><code>USE MeuBancoDeDados;
-GRANT SELECT ON SCHEMA::dbo TO MeuUsuario;</code></pre>
-
-            <p><strong>Resultado:</strong></p>
-            <ul>
-                <li>O usuário `MeuUsuario` terá permissão para executar consultas SELECT no esquema `dbo` do banco de dados `MeuBancoDeDados`.</li>
-            </ul>
-
-            <h3>Conceder Permissões de Escrita</h3>
-            <pre><code>USE MeuBancoDeDados;
-GRANT INSERT, UPDATE, DELETE ON SCHEMA::dbo TO MeuUsuario;</code></pre>
-
-            <p><strong>Resultado:</strong></p>
-            <ul>
-                <li>O usuário `MeuUsuario` terá permissão para executar operações INSERT, UPDATE e DELETE no esquema `dbo` do banco de dados `MeuBancoDeDados`.</li>
-            </ul>
-
-            <h2>Atividade 4: Verificar Permissões</h2>
-
-            <h3>Verificar Permissões de um Usuário</h3>
-            <pre><code>USE MeuBancoDeDados;
-EXEC sp_helprotect @username = 'MeuUsuario';</code></pre>
-
-            <p><strong>Resultado:</strong> Uma lista de permissões concedidas ao usuário `MeuUsuario` será exibida, detalhando quais ações ele pode realizar no banco de dados `MeuBancoDeDados`.</p>
-
-            <h2>Atividade 5: Criar e Utilizar Papéis (Roles)</h2>
-
-            <h3>Passo 1: Criar um Papel de Banco de Dados</h3>
-            <pre><code>USE MeuBancoDeDados;
-CREATE ROLE MeuPapel;</code></pre>
-
-            <h4>Explicação:</h4>
-            <ul>
-                <li><strong>CREATE ROLE</strong>: Este comando cria um novo papel (role) no banco de dados.</li>
-                <li><strong>MeuPapel</strong>: Nome do papel que estamos criando.</li>
-                <li><strong>Importância:</strong> Papéis permitem agrupar permissões e atribuí-las a múltiplos usuários, facilitando o gerenciamento de permissões.</li>
-            </ul>
-
-            <h3>Passo 2: Atribuir Permissões ao Papel</h3>
-            <pre><code>USE MeuBancoDeDados;
-GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA::dbo TO MeuPapel;</code></pre>
-
-            <h4>Explicação:</h4>
-            <ul>
-                <li><strong>GRANT</strong>: Este comando concede permissões ao papel.</li>
-                <li><strong>SELECT, INSERT, UPDATE, DELETE</strong>: Permissões que estamos concedendo.</li>
-                <li><strong>ON SCHEMA::dbo</strong>: Esquema ao qual
+</body>
+</html>
