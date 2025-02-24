@@ -1,0 +1,167 @@
+Sure! Here is the HTML content for the activities:
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades Práticas de Autenticação e Autorização no SQL Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #0779e4 3px solid;
+        }
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+           20px;
+            margin-top: 20px;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        pre {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Atividades Práticas de Autenticação e Autorização no SQL Server</h1>
+    </header>
+    <div class="container">
+        <div class="content">
+            <h2>Atividade 1: Verificar o Modo de Autenticação Atual</h2>
+            <h3>Tipos de Autenticação no SQL Server</h3>
+            <ul>
+                <li><strong>Autenticação do Windows</strong>: Utiliza as credenciais do Windows para autenticar usuários. É considerada mais segura porque aproveita os mecanismos de segurança do Windows, como políticas de senha e autenticação Kerberos.</li>
+                <li><strong>Autenticação do SQL Server (Mista)</strong>: Permite que o SQL Server gerencie as credenciais de login. Isso é útil em ambientes onde usuários não têm contas do Windows ou quando é necessário acesso a partir de sistemas não-Windows.</li>
+            </ul>
+
+            <h3>Importância de Utilizar Cada Tipo de Autenticação</h3>
+            <ul>
+                <li><strong>Autenticação do Windows</strong>:
+                    <ul>
+                        <li><strong>Segurança</strong>: Aproveita as políticas de segurança do Windows, como complexidade de senha e bloqueio de conta.</li>
+                        <li><strong>Gerenciamento Centralizado</strong>: Facilita o gerenciamento de usuários e permissões através do Active Directory.</li>
+                        <li><strong>Autenticação Integrada</strong>: Usuários não precisam fornecer credenciais adicionais ao acessar o SQL Server, pois a autenticação é feita automaticamente.</li>
+                    </ul>
+                </li>
+                <li><strong>Autenticação do SQL Server (Mista)</strong>:
+                    <ul>
+                        <li><strong>Flexibilidade</strong>: Permite que usuários sem contas do Windows acessem o SQL Server.</li>
+                        <li><strong>Compatibilidade</strong>: Necessária para aplicativos que não suportam autenticação do Windows.</li>
+                        <li><strong>Isolamento</strong>: Útil em ambientes onde o SQL Server precisa ser isolado do domínio do Windows por razões de segurança ou arquitetura.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Verificar o Modo de Autenticação Atual</h3>
+            <pre><code>SELECT SERVERPROPERTY('IsIntegratedSecurityOnly') AS [AuthMode];</code></pre>
+            <p><strong>Resultado:</strong></p>
+            <ul>
+                <li><strong>1</strong>: O SQL Server está configurado para usar apenas autenticação do Windows.</li>
+                <li><strong>0</strong>: O SQL Server está configurado para usar autenticação mista (Windows e SQL Server).</li>
+            </ul>
+
+            <h2>Atividade 2: Criar um Login e Usuário</h2>
+
+            <h3>Passo 1: Criar um Login de SQL Server</h3>
+            <pre><code>CREATE LOGIN MeuLoginComSenha 
+WITH PASSWORD = 'SenhaForte123!';</code></pre>
+
+            <h4>Explicação:</h4>
+            <ul>
+                <li><strong>CREATE LOGIN</strong>: Este comando cria um novo login no SQL Server.</li>
+                <li><strong>MeuLoginComSenha</strong>: Nome do login que estamos criando.</li>
+                <li><strong>WITH PASSWORD</strong>: Define a senha para o login. No exemplo, a senha é 'SenhaForte123!'.</li>
+                <li><strong>Importância:</strong> Criar logins permite que usuários acessem o SQL Server com credenciais específicas. É uma prática comum em ambientes onde diferentes usuários precisam acessar o banco de dados com diferentes níveis de permissão.</li>
+            </ul>
+
+            <h3>Passo 2: Criar um Usuário de Banco de Dados</h3>
+            <pre><code>USE MeuBancoDeDados;
+CREATE USER MeuUsuario 
+FOR LOGIN MeuLoginComSenha;</code></pre>
+
+            <h4>Explicação:</h4>
+            <ul>
+                <li><strong>USE MeuBancoDeDados</strong>: Este comando seleciona o banco de dados `MeuBancoDeDados` para que os comandos subsequentes sejam executados nele.</li>
+                <li><strong>CREATE USER</strong>: Este comando cria um novo usuário no banco de dados selecionado.</li>
+                <li><strong>MeuUsuario</strong>: Nome do usuário que estamos criando.</li>
+                <li><strong>FOR LOGIN MeuLoginComSenha</strong>: Associa o usuário `MeuUsuario` ao login `MeuLoginComSenha` criado anteriormente.</li>
+                <li><strong>Importância:</strong> Criar usuários no banco de dados permite que logins tenham acesso a recursos específicos dentro de um banco de dados. Isso é crucial para gerenciar permissões e garantir que os usuários só possam acessar os dados e executar as operações que lhes foram explicitamente concedidas.</li>
+            </ul>
+
+            <h2>Atividade 3: Conceder Permissões</h2>
+
+            <h3>Conceder Permissões de Leitura</h3>
+            <pre><code>USE MeuBancoDeDados;
+GRANT SELECT ON SCHEMA::dbo TO MeuUsuario;</code></pre>
+
+            <p><strong>Resultado:</strong></p>
+            <ul>
+                <li>O usuário `MeuUsuario` terá permissão para executar consultas SELECT no esquema `dbo` do banco de dados `MeuBancoDeDados`.</li>
+            </ul>
+
+            <h3>Conceder Permissões de Escrita</h3>
+            <pre><code>USE MeuBancoDeDados;
+GRANT INSERT, UPDATE, DELETE ON SCHEMA::dbo TO MeuUsuario;</code></pre>
+
+            <p><strong>Resultado:</strong></p>
+            <ul>
+                <li>O usuário `MeuUsuario` terá permissão para executar operações INSERT, UPDATE e DELETE no esquema `dbo` do banco de dados `MeuBancoDeDados`.</li>
+            </ul>
+
+            <h2>Atividade 4: Verificar Permissões</h2>
+
+            <h3>Verificar Permissões de um Usuário</h3>
+            <pre><code>USE MeuBancoDeDados;
+EXEC sp_helprotect @username = 'MeuUsuario';</code></pre>
+
+            <p><strong>Resultado:</strong> Uma lista de permissões concedidas ao usuário `MeuUsuario` será exibida, detalhando quais ações ele pode realizar no banco de dados `MeuBancoDeDados`.</p>
+
+            <h2>Atividade 5: Criar e Utilizar Papéis (Roles)</h2>
+
+            <h3>Passo 1: Criar um Papel de Banco de Dados</h3>
+            <pre><code>USE MeuBancoDeDados;
+CREATE ROLE MeuPapel;</code></pre>
+
+            <h4>Explicação:</h4>
+            <ul>
+                <li><strong>CREATE ROLE</strong>: Este comando cria um novo papel (role) no banco de dados.</li>
+                <li><strong>MeuPapel</strong>: Nome do papel que estamos criando.</li>
+                <li><strong>Importância:</strong> Papéis permitem agrupar permissões e atribuí-las a múltiplos usuários, facilitando o gerenciamento de permissões.</li>
+            </ul>
+
+            <h3>Passo 2: Atribuir Permissões ao Papel</h3>
+            <pre><code>USE MeuBancoDeDados;
+GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA::dbo TO MeuPapel;</code></pre>
+
+            <h4>Explicação:</h4>
+            <ul>
+                <li><strong>GRANT</strong>: Este comando concede permissões ao papel.</li>
+                <li><strong>SELECT, INSERT, UPDATE, DELETE</strong>: Permissões que estamos concedendo.</li>
+                <li><strong>ON SCHEMA::dbo</strong>: Esquema ao qual
